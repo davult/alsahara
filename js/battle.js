@@ -50,7 +50,7 @@ atk1.addEventListener('click', function () {
         player_life.style.width = (player.hp / 20) * 100;
     }
 
-    if (en.hp === 0) {
+    if (en.hp <= 0) {
         enemy_life.style.color = 'red';
         enemy_life.textContent = 'Morreu, acabou!';
         atk1.value = 'Voltar ao mapa';
@@ -59,7 +59,7 @@ atk1.addEventListener('click', function () {
         });
     }
     
-    if (player.hp === 0) {
+    if (player.hp <= 0) {
         enemy_life.style.color = 'red';
         enemy_life.textContent = 'Tu morreu, já era!';
         atk1.value = 'Voltar ao menu principal';
