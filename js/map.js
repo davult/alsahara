@@ -80,13 +80,6 @@ function initMap() {
 
     let enemies = [enemy, enemy_2];
 
-    var enid = window.location.href.split('#')[1].split('%')[2];
-
-    if (enid) {
-        if (enid === enemies[0]) enemies[0].map = null;
-        if (enid === enemies[1]) enemies[1].map = null;
-    }
-
     // Controladores
 
     var infoWindow = new google.maps.InfoWindow({ map: map });
@@ -95,7 +88,6 @@ function initMap() {
 
     logoutButton.control_text.innerHTML = 'Log out';
     logoutButton.control_ui.addEventListener('click', function () {
-        logOut();
         window.location = 'index.html';
     });
 
@@ -140,6 +132,13 @@ function initMap() {
                 lat: position.coords.latitude+0.0002,
                 lng: position.coords.longitude+0.0002
             });
+            
+            var enid = window.location.href.split('#')[1].split('%')[2];
+
+            if (enid) {
+                if (enid === enemies[0]) enemies[0].map = null;
+                if (enid === enemies[1]) enemies[1].map = null;
+            }
 
             enemy.addListener('click', function(){
                 if (circulo.getBounds().contains(enemy.position)) {
