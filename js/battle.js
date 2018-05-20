@@ -27,7 +27,7 @@ atk1.addEventListener('click', function () {
     }
 
     if (player.class === 'mercenary') {
-        dmg = (player.damage_power + player.def) - en.damage_def;
+        dmg = (player.damage_power + player.damage_def) - en.damage_def;
         en.hp -= dmg;
         enemy_life.textContent = `${en.hp}/20`;
         enemy_life.style.width = (en.hp / 20) * 100;
@@ -64,7 +64,7 @@ atk1.addEventListener('click', function () {
         enemy_life.textContent = 'Tu morreu, já era!';
         atk1.value = 'Voltar ao menu principal';
         atk1.addEventListener('click', function () {
-            window.location = `sign.html`;
+            window.location = `sign_in.html`;
         });
     }
 });
