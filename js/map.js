@@ -136,8 +136,8 @@ function initMap() {
             var enid = window.location.href.split('#')[1].split('%')[2];
 
             if (enid) {
-                if (enid === enemies[0]) enemies[0].map = null;
-                if (enid === enemies[1]) enemies[1].map = null;
+                if (enid === enemies[0]) enemies[0].setMap(null);
+                if (enid === enemies[1]) enemies[1].setMap(null);
             }
 
             enemy.addListener('click', function(){
