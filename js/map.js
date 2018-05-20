@@ -78,8 +78,6 @@ function initMap() {
         id: 2
     });
 
-    let enemies = [enemy, enemy_2];
-
     // Controladores
 
     var infoWindow = new google.maps.InfoWindow({ map: map });
@@ -133,11 +131,12 @@ function initMap() {
                 lng: position.coords.longitude+0.0002
             });
             
+            let enemies = [enemy, enemy_2];
             var enid = window.location.href.split('#')[1].split('%')[2];
 
             if (enid) {
-                if (enid === enemies[0]) enemies[0].setMap(null);
-                if (enid === enemies[1]) enemies[1].setMap(null);
+                if (enid === enemies[0].id) enemies[0].setMap(null);
+                if (enid === enemies[1].id) enemies[1].setMap(null);
             }
 
             enemy.addListener('click', function(){
