@@ -9,8 +9,8 @@ self.addEventListener('install', function (event) {
                 console.log('[PWA Builder] Cached index page during Install' + response.url);
                 return cache.addAll(['/alsahara/', '/alsahara/index.html', '/alsahara/map.html',
                     '/alsahara/sign_in.html', '/alsahara/battle.html','/alsahara/js/map_style.js', '/alsahara/js/map.js', 
-                    '/alsahara/js/sign_in.js', '/alsahara/js/user.js', '/alsahara/js/battle.js', '/alsahara/css/map.css', 
-                    '/alsahara/css/style.css', '/alsahara/img/assassin.png', '/alsahara/img/mercenary.png',
+                    '/alsahara/js/sign_in.js', '/alsahara/js/user.js', '/alsahara/js/battle.js', '/alsahara/js/api.js', 
+                    '/alsahara/css/map.css', '/alsahara/css/style.css', '/alsahara/img/assassin.png', '/alsahara/img/mercenary.png',
                     '/alsahara/img/sorcerer.png', '/alsahara/img/logo_limpo.png', '/alsahara/img/icon-72x72.png'
                 ]);
             });
