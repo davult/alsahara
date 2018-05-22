@@ -1,5 +1,17 @@
 var style = MAP_STYLE;
 
+function createEnemy(id, title, icon, map, alive) {
+    var _en = new google.maps.Marker({
+        map: map,
+        title: title,
+        icon: icon,
+        id: id,
+        alive: alive
+    });
+
+    return _en;
+}
+
 function CenterControl(controlDiv, map) {
     // CSS para a borda do controlador.
     var controlUI = document.createElement('div');
@@ -63,19 +75,14 @@ function initMap() {
 
     //Inimigos:
 
-    let enemy = new google.maps.Marker({
-        map: map,
-        title: 'Inimigo',
-        icon: `img/enemy.png`,
-        id: 1
-    });
+    let enemies = [];
+    let death_enemies = [];
 
-    let enemy_2 = new google.maps.Marker({
-        map: map,
-        title: 'Inimigo 2',
-        icon: `img/enemy.png`, 
-        id: 2
-    });
+    for (var i = 0; i <= 3; i++) {
+        enemies.push(createEnemy(i, 'Ghost :3', 'img/enemy.png', map, true));
+    }
+
+    console.log('oi');
 
     // Controladores
 
@@ -99,7 +106,10 @@ function initMap() {
                 lng: position.coords.longitude
             };
 
-            infoWindow.setPosition(pos);
+            infoWindow.setPosition({
+                lat: position.coords.latitude + 0.0002,
+                lng: position.coords.longitude
+            });
             infoWindow.setContent('You are here.');
             map.setCenter(pos);
 
@@ -119,51 +129,41 @@ function initMap() {
             });
 
             //Inimigos:
-
-            enemy.setPosition({
-                lat: position.coords.latitude+0.0004,
-                lng: position.coords.longitude+0.0004
+          
+            enemies.forEach(enemy => {
+                enemy.addListener('click', function () {
+                    if (circulo.getBounds().contains(enemy.position)) {
+                        enemy.alive = false;
+                        var div = `<style>a {text-decoration: none; color: black;</style><a href="battle.html#${player.login}%${player.class}">Click here to battle!</a>`;
+                        infoWindow.setContent(div);
+                        infoWindow.setPosition({
+                            lat: enemy.position.lat() + 0.0002,
+                            lng: enemy.position.lng()
+                        });
+                        infoWindow.open(map);
+                    } else {
+                        infoWindow.setContent('Enemy out of range!');
+                        infoWindow.setPosition({
+                            lat: enemy.position.lat() + 0.0002,
+                            lng: enemy.position.lng()
+                        });
+                        infoWindow.open(map);
+                    }
+                });
             });
 
-            enemy_2.setPosition({
-                lat: position.coords.latitude+0.0002,
-                lng: position.coords.longitude+0.0002
-            });
+            var x = 0.0002;
 
-            enemy.addListener('click', function(){
-                if (circulo.getBounds().contains(enemy.position)) {
-                    var div = `<style>a {text-decoration: none; font-color: #000;}</style><input id="vai" type="submit">Click here to battle!</input>`; 
-                    infoWindow.setContent(div);
-                    infoWindow.setPosition(enemy.position);                    
-                    infoWindow.open(map);
-                    enemy.setPosition(null);
-                    document.querySelector('#vai').addEventListener('click', function(){
-                        window.location = `battle.html#${player.login}%${player.class}`;                    
-                    });
-                    
-                } else {
-                    infoWindow.setContent('Enemy out of range!');
-                    infoWindow.setPosition(enemy.position);                    
-                    infoWindow.open(map);
+            enemies.forEach(enemy => {
+                if (enemy.alive) {
+                    enemy.setPosition({
+                        lat: position.coords.latitude + x,
+                        lng: position.coords.longitude + x
+                    })
+                    x += x;
                 }
             });
 
-            enemy_2.addListener('click', function(){
-                if (circulo.getBounds().contains(enemy_2.position)) {
-                    var div = `<style>a {text-decoration: none; font-color: #000;}</style><input id="vai2" type="text">Click here to battle!</input>`; 
-                    infoWindow.setContent(div);
-                    infoWindow.setPosition(enemy_2.position);                    
-                    infoWindow.open(map);
-                    enemy_2.setPosition(null);
-                    document.querySelector('#vai2').addEventListener('click', function(){
-                        window.location = `battle.html#${player.login}%${player.class}`;                    
-                    });
-                } else {
-                    infoWindow.setContent('Enemy out of range!');
-                    infoWindow.setPosition(enemy_2.position);                    
-                    infoWindow.open(map);
-                }
-            });
 
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
