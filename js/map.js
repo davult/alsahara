@@ -127,18 +127,9 @@ function initMap() {
             });
 
             enemy_2.setPosition({
-                lat: position.coords.latitude+0.0002,
-                lng: position.coords.longitude+0.0002
+                lat: position.coords.latitude+0.0001,
+                lng: position.coords.longitude+0.0001
             });
-            
-            let enemies = [enemy, enemy_2];
-            var enid = window.location.href.split('#')[1].split('%')[2];
-
-            if (enid) {
-                if (parseInt(enid) === enemies[0].id) enemies[0].setPosition(null);
-                if (parseInt(enid) === enemies[1].id) enemies[1].setPosition(null);
-                console.log('opa');
-            }
 
             enemy.addListener('click', function(){
                 if (circulo.getBounds().contains(enemy.position)) {
@@ -146,6 +137,7 @@ function initMap() {
                     infoWindow.setContent(div);
                     infoWindow.setPosition(enemy.position);                    
                     infoWindow.open(map);
+                    enemy.setPosition(null);
                 } else {
                     infoWindow.setContent('Enemy out of range!');
                     infoWindow.setPosition(enemy.position);                    
@@ -159,6 +151,7 @@ function initMap() {
                     infoWindow.setContent(div);
                     infoWindow.setPosition(enemy_2.position);                    
                     infoWindow.open(map);
+                    enemy_2.setPosition(null);
                 } else {
                     infoWindow.setContent('Enemy out of range!');
                     infoWindow.setPosition(enemy_2.position);                    
@@ -170,26 +163,13 @@ function initMap() {
             handleLocationError(true, infoWindow, map.getCenter());
         });
 
-        navigator.geolocation.watchPosition(function (position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('You are here.');
-            
-            circulo.setCenter({
+        navigator.geolocation.watchPosition(function (position) {  
+            circulo.setPosition({
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             });
             
-            player_marker.setCenter({
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            });
-            
-            player_marker.setPostition({
+            player_marker.setPosition({
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             });
