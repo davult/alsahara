@@ -132,10 +132,14 @@ function initMap() {
 
             enemy.addListener('click', function(){
                 if (circulo.getBounds().contains(enemy.position)) {
-                    var div = `<style>a {text-decoration: none; font-color: #000;}</style><a href="battle.html#${player.login}%${player.class}%${enemy.id}">Click here to battle!</a>`; 
+                    var div = `<style>a {text-decoration: none; font-color: #000;}</style><input id="vai" type="text">Click here to battle!</input>`; 
                     infoWindow.setContent(div);
                     infoWindow.setPosition(enemy.position);                    
                     infoWindow.open(map);
+                    document.querySelector('#vai').addEventListener('click', function(){
+                        enemy.setPosition(null);
+                        window.location = `battle.html#${player.login}%${player.class}`;                    
+                    });
                     enemy.setPosition(null);
                 } else {
                     infoWindow.setContent('Enemy out of range!');
@@ -146,11 +150,14 @@ function initMap() {
 
             enemy_2.addListener('click', function(){
                 if (circulo.getBounds().contains(enemy_2.position)) {
-                    var div = `<style>a {text-decoration: none; font-color: #000;}</style><a href="battle.html#${player.login}%${player.class}%${enemy_2.id}">Click here to battle!</a>`; 
+                    var div = `<style>a {text-decoration: none; font-color: #000;}</style><input id="vai2" type="text">Click here to battle!</input>`; 
                     infoWindow.setContent(div);
                     infoWindow.setPosition(enemy_2.position);                    
                     infoWindow.open(map);
-                    enemy_2.setPosition(null);
+                    document.querySelector('#vai2').addEventListener('click', function(){
+                        enemy_2.setPosition(null);
+                        window.location = `battle.html#${player.login}%${player.class}`;                    
+                    });
                 } else {
                     infoWindow.setContent('Enemy out of range!');
                     infoWindow.setPosition(enemy_2.position);                    
