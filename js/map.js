@@ -108,7 +108,7 @@ function initMap() {
                 lng: position.coords.longitude
             });
 
-            circulo.setPosition({
+            circulo.setCenter({
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             });
@@ -163,7 +163,7 @@ function initMap() {
         });
 
         navigator.geolocation.watchPosition(function (position) {  
-            circulo.setPosition({
+            circulo.setCenter({
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             });
