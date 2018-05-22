@@ -32,7 +32,13 @@ function CenterControl(controlDiv, map) {
 }
 
 function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
+    var map = new google.maps.Map(document.getElementById('map'), {{
+168
+                lat: position.coords.latitude,
+169
+                lng: position.coords.longitude
+170
+            }
         center: { lat: -34.397, lng: 150.644 },
         zoom: 18,
         styles: style,
@@ -63,7 +69,13 @@ function initMap() {
 
     //Inimigos:
 
-
+{
+168
+                lat: position.coords.latitude,
+169
+                lng: position.coords.longitude
+170
+            }
     let enemy = new google.maps.Marker({
         map: map,
         title: 'Inimigo',
