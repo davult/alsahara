@@ -7,12 +7,12 @@ self.addEventListener('install', function (event) {
         fetch(indexPage).then(function (response) {
             caches.open('pwabuilder-offline').then(function (cache) {
                 console.log('[PWA Builder] Cached index page during Install' + response.url);
-                return cache.addAll(['/alsahara/', '/alsahara/index.html', '/alsahara/map.html',
-                    '/alsahara/sign_in.html', '/alsahara/battle.html','/alsahara/js/map_style.js', '/alsahara/js/map.js', 
-                    '/alsahara/js/sign_in.js', '/alsahara/js/user.js', '/alsahara/js/battle.js', '/alsahara/js/api.js', 
-                    '/alsahara/css/map.css', '/alsahara/css/style.css', '/alsahara/img/assassin.png', '/alsahara/img/mercenary.png',
-                    '/alsahara/img/sorcerer.png', '/alsahara/img/logo_limpo.png', '/alsahara/img/icon-72x72.png'
-                ]);
+                return cache.addAll(['/alsahara', '/alsahara/js/api.js', '/alsahara/js/user.js', '/alsahara/js/map_style.js',
+                                    '/alsahara/js/map.js', '/alsahara/js/battle.js', '/alsahara/js/sign_in.js',
+                                    '/alsahara/css/style.css', '/alsahara/css/map.css', '/alsahara/img/assassin.png',
+                                    '/alsahara/img/mercenary.png', '/alsahara/img/sorcerer.png', '/alsahara/img/enemy.png',
+                                    '/alsahara/img/icon-72x72.png', '/alsahara/index.html', '/alsahara/sign_in.html',
+                                    '/alsahara/map.html', '/alsahara/battle.html', '/alsahara/manifest.json']);
             });
         })
     );
