@@ -32,13 +32,7 @@ function CenterControl(controlDiv, map) {
 }
 
 function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {{
-168
-                lat: position.coords.latitude,
-169
-                lng: position.coords.longitude
-170
-            }
+    var map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -34.397, lng: 150.644 },
         zoom: 18,
         styles: style,
@@ -69,13 +63,6 @@ function initMap() {
 
     //Inimigos:
 
-{
-168
-                lat: position.coords.latitude,
-169
-                lng: position.coords.longitude
-170
-            }
     let enemy = new google.maps.Marker({
         map: map,
         title: 'Inimigo',
@@ -121,7 +108,7 @@ function initMap() {
                 lng: position.coords.longitude
             });
 
-            circulo.setCenter({
+            circulo.setPosition({
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             });
@@ -134,13 +121,13 @@ function initMap() {
             //Inimigos:
 
             enemy.setPosition({
-                lat: position.coords.latitude+0.0005,
-                lng: position.coords.longitude+0.0005
+                lat: position.coords.latitude+0.0004,
+                lng: position.coords.longitude+0.0004
             });
 
             enemy_2.setPosition({
-                lat: position.coords.latitude+0.0001,
-                lng: position.coords.longitude+0.0001
+                lat: position.coords.latitude+0.0002,
+                lng: position.coords.longitude+0.0002
             });
 
             enemy.addListener('click', function(){
