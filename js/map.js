@@ -135,8 +135,8 @@ function initMap() {
             var enid = window.location.href.split('#')[1].split('%')[2];
 
             if (enid) {
-                if (enid === enemies[0].id) enemies[0].setMap(null);
-                if (enid === enemies[1].id) enemies[1].setMap(null);
+                if (enid === enemies[0].id) enemies[0].setPosition(null);
+                if (enid === enemies[1].id) enemies[1].setPosition(null);
             }
 
             enemy.addListener('click', function(){
@@ -183,6 +183,12 @@ function initMap() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             });
+            
+            player_marker.setCenter({
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            });
+            
             map.setCenter({
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
