@@ -135,8 +135,9 @@ function initMap() {
             var enid = window.location.href.split('#')[1].split('%')[2];
 
             if (enid) {
-                if (enid === enemies[0].id) enemies[0].setPosition(null);
-                if (enid === enemies[1].id) enemies[1].setPosition(null);
+                if (parseInt(enid) === enemies[0].id) enemies[0].setPosition(null);
+                if (parseInt(enid) === enemies[1].id) enemies[1].setPosition(null);
+                console.log('opa');
             }
 
             enemy.addListener('click', function(){
@@ -177,14 +178,18 @@ function initMap() {
 
             infoWindow.setPosition(pos);
             infoWindow.setContent('You are here.');
-            map.setCenter(pos);
-
+            
             circulo.setCenter({
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             });
             
             player_marker.setCenter({
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            });
+            
+            player_marker.setPostition({
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             });
