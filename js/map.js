@@ -132,15 +132,15 @@ function initMap() {
 
             enemy.addListener('click', function(){
                 if (circulo.getBounds().contains(enemy.position)) {
-                    var div = `<style>a {text-decoration: none; font-color: #000;}</style><input id="vai" type="text">Click here to battle!</input>`; 
+                    var div = `<style>a {text-decoration: none; font-color: #000;}</style><input id="vai" type="submit">Click here to battle!</input>`; 
                     infoWindow.setContent(div);
                     infoWindow.setPosition(enemy.position);                    
                     infoWindow.open(map);
+                    enemy.setPosition(null);
                     document.querySelector('#vai').addEventListener('click', function(){
-                        enemy.setPosition(null);
                         window.location = `battle.html#${player.login}%${player.class}`;                    
                     });
-                    enemy.setPosition(null);
+                    
                 } else {
                     infoWindow.setContent('Enemy out of range!');
                     infoWindow.setPosition(enemy.position);                    
@@ -154,8 +154,8 @@ function initMap() {
                     infoWindow.setContent(div);
                     infoWindow.setPosition(enemy_2.position);                    
                     infoWindow.open(map);
+                    enemy_2.setPosition(null);
                     document.querySelector('#vai2').addEventListener('click', function(){
-                        enemy_2.setPosition(null);
                         window.location = `battle.html#${player.login}%${player.class}`;                    
                     });
                 } else {
