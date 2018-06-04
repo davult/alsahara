@@ -54,6 +54,8 @@ atk1.addEventListener('click', function () {
         enemy_life.style.color = 'red';
         enemy_life.textContent = 'Morreu, acabou!';
         atk1.value = 'Voltar ao mapa';
+        localStorage.setItem(eni_id, 'morto');
+        
         atk1.addEventListener('click', function () {
             window.location = `map.html#${player.login}%${player.class}`;
         });
