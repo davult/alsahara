@@ -76,7 +76,6 @@ function initMap() {
     //Inimigos:
 
     let enemies = [];
-    let death_enemies = [];
 
     for (var i = 0; i <= 3; i++) {
         enemies.push(createEnemy(i, 'Ghost :3', 'img/enemy.png', map, true));
@@ -133,8 +132,8 @@ function initMap() {
             enemies.forEach(enemy => {
                 enemy.addListener('click', function () {
                     if (circulo.getBounds().contains(enemy.position)) {
-                        enemy.alive = false;
-                        var div = `<style>a {text-decoration: none; color: black;</style><a href="battle.html#${player.login}%${player.class}">Click here to battle!</a>`;
+                        console.log(this.id);
+                        var div = `<style>a {text-decoration: none; color: black;</style><a href="battle.html#${player.login}%${player.class}%${this.id}">Click here to battle!</a>`;
                         infoWindow.setContent(div);
                         infoWindow.setPosition({
                             lat: enemy.position.lat() + 0.0002,
@@ -154,13 +153,14 @@ function initMap() {
 
             var x = 0.0002;
 
-            enemies.forEach(enemy => {
-                if (enemy.alive) {
-                    enemy.setPosition({
-                        lat: position.coords.latitude + x,
-                        lng: position.coords.longitude + x
-                    })
-                    x += x;
+            enemies.forEach(enemy => { 
+                enemy.setPosition({
+                    lat: position.coords.latitude + x,
+                    lng: position.coords.longitude + x
+                })
+                x += x;
+                if ((localStorage.getItem(enemy.id)) === 'morto') {
+                    enemy.setMap(null);
                 }
             });
 
